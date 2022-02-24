@@ -1,0 +1,31 @@
+package com.coder.tests.day5_xpath;
+
+import com.coder.Utilities.WebDriverFactory;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+
+public class AmazonTest {
+    public static void main(String[] args) throws InterruptedException {
+        /**
+         * TASK
+         * go to amazon.com
+         * search for selenium
+         * click search button
+         * print 1-48 of 304 results for "selenium"
+         *
+         */
+
+        WebDriver driver = WebDriverFactory.getDriver("chrome");
+        driver.get("https://www.amazon.com/");
+        WebElement searchBox = driver.findElement(By.id("twotabsearchtextbox"));
+        searchBox.sendKeys("selenium");
+        Thread.sleep(2000);
+        driver.findElement(By.id("nav-search-submit-button")).click();
+        WebElement result = driver.findElement(By.xpath("//span[contains(text(),'results for')]"));
+        System.out.println("result.getText() = " + result.getText());
+        driver.quit();
+
+
+    }
+}
